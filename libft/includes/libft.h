@@ -6,7 +6,7 @@
 /*   By: avacher <avacher@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 17:49:05 by avacher           #+#    #+#             */
-/*   Updated: 2015/12/19 13:29:50 by avacher          ###   ########.fr       */
+/*   Updated: 2015/12/28 15:17:38 by avacher          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lstpushback(t_list **alst, t_list *new);
 int					ft_strnlen(char *str, char c);
 char				*ft_itoa_base(int n, int base);
-char				*ft_properjoin(char const *s1, char const *s2);
+char				*ft_properjoin(char *s1, char *s2);
 t_list				*ft_split_to_lst(const char *s, char c);
 int					ft_lst_count(t_list *lst);
 void				ft_putnbrendl(int n);

@@ -6,7 +6,7 @@
 /*   By: avacher <avacher@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 21:07:03 by avacher           #+#    #+#             */
-/*   Updated: 2015/12/18 17:39:43 by avacher          ###   ########.fr       */
+/*   Updated: 2015/12/28 15:27:57 by avacher          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int		ft_strnlen(char *str, char c)
 
 	i = 0;
 	while (str[i] && str[i] != c)
- 		i ++;
+		i++;
 	return (i);
 }

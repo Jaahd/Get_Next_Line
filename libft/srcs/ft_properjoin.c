@@ -6,14 +6,14 @@
 /*   By: avacher <avacher@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/19 13:15:29 by avacher           #+#    #+#             */
-/*   Updated: 2015/12/28 13:22:10 by avacher          ###   ########.fr       */
+/*   Updated: 2015/12/28 16:32:00 by avacher          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_properjoin(char const *s1, char const *s2)
+char	*ft_properjoin(char *s1, char *s2)
 {
 	char	*ret;
 
@@ -22,7 +22,6 @@ char	*ft_properjoin(char const *s1, char const *s2)
 	if (s1 == NULL)
 	{
 		ret = ft_strdup(s2);
-		ft_strdel(&s2);
 		return (ret);
 	}
 	if (s2 == NULL)
@@ -35,7 +34,6 @@ char	*ft_properjoin(char const *s1, char const *s2)
 	{
 		ret = ft_strjoin(s1, s2);
 		ft_strdel(&s1);
-		ft_strdel(&s2);
 		return (ret);
 	}
 	return (NULL);
