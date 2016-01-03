@@ -32,6 +32,8 @@ int				get_next_line(const int fd, char **line)
 	int				read_ret;
 
 	read_ret = 0;
+	if (line == NULL || fd < 0)
+		return (-1);
 	if (end_buff[fd] && end_buff[fd][0] && (ft_strchr(end_buff[fd], '\n') != NULL))
 		return (concat_buff(&(end_buff[fd]), line));
 	while ((read_ret = read(fd, buff, BUFF_SIZE)) > 0)
@@ -50,5 +52,6 @@ int				get_next_line(const int fd, char **line)
 		ft_strdel(&(end_buff[fd]));
 		return (1);
 	}
+	ft_strdel(&(end_buff[fd]));
 	return (0);
 }
