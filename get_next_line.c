@@ -15,13 +15,6 @@
 #include "libft.h"
 #include "get_next_line.h"
 
-static char		*list_fd(const int fd)
-{
-	/* fonction qui verifie dans la liste si le fd qu'on lui passe existe et renvoie le end_buff correspondant ou s'il nexiste pas, le cree
-	t_line			tmp;
-*/
-}
-
 static int		concat_buff(char **end_buff, char **line)
 {
 	char			*newline;
@@ -34,27 +27,27 @@ static int		concat_buff(char **end_buff, char **line)
 
 int				get_next_line(const int fd, char **line)
 {
-	static char		*end_buff = NULL;/*en fait static list*/
+	static char		*end_buff[256];
 	char			buff[BUFF_SIZE + 1];
 	int				read_ret;
 
 	read_ret = 0;
-	if (end_buff && *end_buff && (ft_strchr(end_buff, '\n') != NULL))
-		return (concat_buff(&end_buff, line));
+	if (end_buff[fd] && end_buff[fd][0] && (ft_strchr(end_buff[fd], '\n') != NULL))
+		return (concat_buff(&(end_buff[fd]), line));
 	while ((read_ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[read_ret] = '\0';
-		if ((end_buff = ft_properjoin(end_buff, buff)) == NULL)
+		if ((end_buff[fd] = ft_properjoin(end_buff[fd], buff)) == NULL)
 			return (-1);
-		if (ft_strchr(end_buff, '\n') != NULL)
-			return (concat_buff(&end_buff, line));
+		if (ft_strchr(end_buff[fd], '\n') != NULL)
+			return (concat_buff(&(end_buff[fd]), line));
 	}
 	if (read_ret == -1)
 		return (-1);
-	if (end_buff && *end_buff)
+	if (end_buff[fd] && *(end_buff[fd]))
 	{
-		*line = ft_strdup(end_buff);
-		ft_strdel(&end_buff);
+		*line = ft_strdup(end_buff[fd]);
+		ft_strdel(&(end_buff[fd]));
 		return (1);
 	}
 	return (0);
