@@ -6,7 +6,7 @@
 /*   By: avacher <avacher@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 15:19:23 by avacher           #+#    #+#             */
-/*   Updated: 2015/12/28 16:39:39 by avacher          ###   ########.fr       */
+/*   Updated: 2016/01/06 10:49:19 by avacher          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,38 @@
 #include "libft.h"
 #include "get_next_line.h"
 
-static int		concat_buff(char **end_buff, char **line)
+static int		concat_buff(char **e_buff, char **line)
 {
 	char			*newline;
 
-	newline = ft_strchr(*end_buff, '\n');
-	*line = ft_strsub(*end_buff, 0, newline - *end_buff);
-	ft_strcpy(*end_buff, newline + 1);
+	newline = ft_strchr(*e_buff, '\n');
+	*line = ft_strsub(*e_buff, 0, newline - *e_buff);
+	ft_strcpy(*e_buff, newline + 1);
 	return (1);
 }
 
 int				get_next_line(const int fd, char **line)
 {
-	static char		*end_buff[256];
+	static char		*e_buff[256];
 	char			buff[BUFF_SIZE + 1];
 	int				read_ret;
 
-	read_ret = 0;
 	if (line == NULL || fd < 0)
 		return (-1);
-	if (end_buff[fd] && end_buff[fd][0] && (ft_strchr(end_buff[fd], '\n') != NULL))
-		return (concat_buff(&(end_buff[fd]), line));
+	if (e_buff[fd] && e_buff[fd][0] && (ft_strchr(e_buff[fd], '\n') != NULL))
+		return (concat_buff(&(e_buff[fd]), line));
 	while ((read_ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[read_ret] = '\0';
-		if ((end_buff[fd] = ft_properjoin(end_buff[fd], buff)) == NULL)
+		if ((e_buff[fd] = ft_properjoin(e_buff[fd], buff)) == NULL)
 			return (-1);
-		if (ft_strchr(end_buff[fd], '\n') != NULL)
-			return (concat_buff(&(end_buff[fd]), line));
+		if (ft_strchr(e_buff[fd], '\n') != NULL)
+			return (concat_buff(&(e_buff[fd]), line));
 	}
 	if (read_ret == -1)
 		return (-1);
-	if (end_buff[fd] && *(end_buff[fd]))
-	{
-		*line = ft_strdup(end_buff[fd]);
-		ft_strdel(&(end_buff[fd]));
-		return (1);
-	}
-	ft_strdel(&(end_buff[fd]));
-	return (0);
+	if (e_buff[fd] && *(e_buff[fd]))
+		*line = ft_strdup(e_buff[fd]);
+	ft_strdel(&(e_buff[fd]));
+	return (e_buff[fd] && *(e_buff[fd]));
 }
