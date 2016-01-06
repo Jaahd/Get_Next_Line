@@ -6,7 +6,7 @@
 /*   By: avacher <avacher@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 15:19:23 by avacher           #+#    #+#             */
-/*   Updated: 2016/01/06 11:05:46 by avacher          ###   ########.fr       */
+/*   Updated: 2016/01/06 16:09:30 by avacher          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int				get_next_line(const int fd, char **line)
 	char			buff[BUFF_SIZE + 1];
 	int				read_ret;
 
-	if (line == NULL || fd < 0)
+	if (line == NULL || fd < 0 || fd > 255)
 		return (-1);
 	if (e_buff[fd] && e_buff[fd][0] && (ft_strchr(e_buff[fd], '\n') != NULL))
 		return (concat_buff(&(e_buff[fd]), line));
