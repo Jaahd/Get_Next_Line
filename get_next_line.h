@@ -6,7 +6,7 @@
 /*   By: avacher <avacher@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 12:16:40 by avacher           #+#    #+#             */
-/*   Updated: 2016/01/06 11:00:45 by avacher          ###   ########.fr       */
+/*   Updated: 2016/01/06 16:49:22 by avacher          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 # define GET_NEXT_LINE_H
 
 # define BUFF_SIZE 1024
-
-typedef struct		s_line
-{
-	int				given_fd;
-	char			*end_buff;
-	struct s_line	*next;
-}					t_line;
 
 int					get_next_line(const int fd, char **line);
 

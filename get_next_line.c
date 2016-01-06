@@ -6,7 +6,7 @@
 /*   By: avacher <avacher@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 15:19:23 by avacher           #+#    #+#             */
-/*   Updated: 2016/01/06 16:09:30 by avacher          ###   ########.fr       */
+/*   Updated: 2016/01/06 17:07:48 by avacher          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int				get_next_line(const int fd, char **line)
 	if (read_ret == -1)
 		return (-1);
 	if (e_buff[fd] && *(e_buff[fd]))
+	{
 		*line = ft_strdup(e_buff[fd]);
-	ft_strdel(&(e_buff[fd]));
-	return (e_buff[fd] && *(e_buff[fd]));
+		ft_strdel(&(e_buff[fd]));
+		return (1);
+	}
+	return (0);
 }
